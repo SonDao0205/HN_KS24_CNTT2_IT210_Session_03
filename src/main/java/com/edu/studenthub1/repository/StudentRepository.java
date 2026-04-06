@@ -11,7 +11,6 @@ public class StudentRepository {
     private List<Student> students = new ArrayList<>();
 
     public StudentRepository() {
-        students.add(new Student("Đào Trường Sơn","S-01",  "CNTT", 2024, 3.9, "Đang học"));
         students.add(new Student("Hoàng Minh Quang","S-02",  "QTKD", 2024, 3.2, "Tốt nghiệp"));
         students.add(new Student("Phạm Tiến Hưng","S-03",  "CNTT", 2024, 2.5, "Bảo lưu"));
         students.add(new Student("Bùi Đức Lợi","S-04",  "QTKD", 2024, 3.7, "Đang học"));

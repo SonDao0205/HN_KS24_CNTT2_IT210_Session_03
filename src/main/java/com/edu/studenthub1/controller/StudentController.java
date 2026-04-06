@@ -15,7 +15,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/list")
+    @GetMapping({"/list"})
     public String listStudents(
             Model model,
             @RequestParam(value = "search", required = false) String search,

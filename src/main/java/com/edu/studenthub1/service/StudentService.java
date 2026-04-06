@@ -27,7 +27,7 @@ public class StudentService {
 
     public List<Student> sortStudentByName() {
         List<Student> students = studentRepository.getAllStudents();
-        students.sort(Comparator.comparing(Student::getFullName).reversed());
+        students.sort(Comparator.comparing(Student::getFullName));
         return students;
     }
 
@@ -53,20 +53,23 @@ public class StudentService {
         return students.stream().filter(student -> student.getFaculty().contains(faculty)).toList();
     }
 
-    public Map<Object, String> getStatistic() {
-        Map<Object, String> map = new HashMap<>();
+    public Map<String, Object> getStatistic() {
+        Map<String, Object> map = new HashMap<>();
         List<Student> students = studentRepository.getAllStudents();
-        map.put(students.size(), "Tổng số sinh viên trong nhóm :");
-        map.put((filterStatus("Đang học") / students.size() * 100), "Tỷ lệ % sinh viên đang học : ");
-        map.put((filterStatus("Bảo lưu") / students.size() * 100), "Tỷ lệ % sinh viên bảo lưu : ");
-        map.put((filterStatus("Tốt nghiệp") / students.size() * 100), "Tỷ lệ % sinh viên tốt nghiệp : ");
+        map.put("allStudent", students.size());
+        System.out.println();
+        map.put("percentInProgress", ((double) filterStatus("Đang học") / students.size() * 100));
+        map.put("percentReserve", ((double) filterStatus("Bảo lưu") / students.size() * 100));
+        map.put("percentGraduated", ((double) filterStatus("Tốt nghiệp") / students.size() * 100));
         double sum = 0;
         for (Student student : students) {
             sum += student.getGPA();
         }
-        map.put(sum / students.size(), "GPA trung bình của toàn nhóm : ");
+        double avg = sum / students.size();
+        double roundedAvg = Math.round(avg * 100.0) / 100.0;
+        map.put("avgGPA",roundedAvg);
         Student highest = students.stream().max(Comparator.comparing(Student::getGPA)).orElse(null);
-        map.put(highest, "Thủ khoa của nhóm : ");
+        map.put("highestGPA",highest);
         return map;
     }
 
