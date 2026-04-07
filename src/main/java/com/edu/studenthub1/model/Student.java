@@ -1,5 +1,8 @@
 package com.edu.studenthub1.model;
 
+import lombok.Getter;
+
+@Getter
 public class Student {
     private int id;
     private String fullName;
@@ -8,9 +11,12 @@ public class Student {
     private int yearEnrolled;
     private double GPA;
     private String status;
-    public static int count = 1;
+
+    public Student() {
+    }
+
     public Student(String fullName, String studentCode, String faculty, int yearEnrolled, double GPA, String status) {
-        this.id = count++;
+        this.id = 1;
         this.fullName = fullName;
         this.studentCode = studentCode;
         this.faculty = faculty;
@@ -19,35 +25,4 @@ public class Student {
         this.status = status;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public String getStudentCode() {
-        return studentCode;
-    }
-
-    public String getFaculty() {
-        return faculty;
-    }
-
-    public int getYearEnrolled() {
-        return yearEnrolled;
-    }
-
-    public double getGPA() {
-        return GPA;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public static int getCount() {
-        return count;
-    }
 }
