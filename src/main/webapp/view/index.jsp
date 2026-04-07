@@ -31,8 +31,6 @@
         <label for="select">Sắp xếp</label>
         <br>
         <select class="form-control w-25" name="select" id="select" onchange="selectSortValue(this.value)">
-            <option value="notSort" ${empty param.sortBy or param.sortBy == 'notSort' ? 'selected' : ''}>Không sắp xếp</option>
-
             <option value="gpa" ${param.sortBy == 'gpa' ? 'selected' : ''}>Sắp xếp theo GPA</option>
 
             <option value="name" ${param.sortBy == 'name' ? 'selected' : ''}>Sắp xếp theo Tên</option>
@@ -87,10 +85,7 @@
 </div>
 <script>
     const selectSortValue = (value) => {
-        if(value === "notSort"){
-            window.location.href = "/list";
-        }
-        else if(value){
+        if(value){
             window.location.href = "/list?sortBy=" + value;
         }
     }
